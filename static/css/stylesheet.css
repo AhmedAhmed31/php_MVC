@@ -1,0 +1,222 @@
+@font-face {
+    font-family: 'PF DinText Pro';
+    src: url('../fonts/PFDinTextPro-Bold.eot');
+    src: url('../fonts/PFDinTextPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/PFDinTextPro-Bold.woff') format('woff'),
+    url('../fonts/PFDinTextPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PF Din Text Comp Pro';
+    src: url('../fonts/PFDinTextCompPro-Regular.eot');
+    src: url('../fonts/PFDinTextCompPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/PFDinTextCompPro-Regular.woff') format('woff'),
+    url('../fonts/PFDinTextCompPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* LOGIN SECTION */
+body {
+    font-family: ' PF DinText Pro';
+}
+
+h2 {
+    margin-top: 60px;
+}
+
+.login {
+    background: url('../img/login.png');
+    background-size: cover;
+    height: 100vh;
+}
+
+.login .col-md-12 {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sub-cont {
+    position: relative;
+    height: 450px;
+    width: 50%;
+    background: #223242;
+    opacity: .9;
+    color: #FFF;
+}
+
+.back {
+    margin-left: 25px;
+}
+
+.form-holder {
+    position: absolute;
+    height: 110%;
+    width: 95%;
+    background: #FFF;
+    color: #000;
+    top: -5%;
+    left: 25px;
+    margin: 0 auto;
+    z-index: 2;
+
+}
+
+.holder {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.left-side .form-holder h2 {
+    color: #3e495e;
+    line-height: 57px;
+    margin-bottom: 0;
+}
+
+h2:after {
+    content: '';
+    background: #48abfe;
+    display: block;
+    margin: 10px 0;
+    width: 10%;
+    height: 2px;
+}
+
+.tittle img {
+    position: relative;
+    top: -53px;
+}
+
+.form-holder form, .input-group {
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+input {
+    color: #8495b7;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #cad2df;
+    padding: 12px 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+input + input {
+    margin-bottom: 15px;
+}
+
+.form-holder span {
+    color: red;
+    position: relative;
+    font-weight: bold;
+    top: -53px;
+    left: 12%;
+}
+
+.form-holder span#fix {
+    left: 19%;
+    top: -55px;
+}
+
+.form-holder .input-group .fa {
+    position: relative;
+    top: -55px;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #8495b7;
+}
+
+input.btn {
+    width: 25%;
+    background: #f89a36;
+    color: #FFF;
+    border-radius: 10px;
+    margin-left: -5px;
+    margin-top: 60px;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: #FFF;
+}
+
+.right-side .sub-cont .text {
+    margin-left: 20px;
+}
+
+.right-side h2 {
+    margin-bottom: 30px;
+    line-height: 57px;
+}
+
+p {
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    line-height: 2;
+}
+
+.text .btn-primary {
+    background: transparent;
+    border-width: 2px;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-color: #49abfe;
+}
+
+.right-side .tittle img {
+    top: -84px;
+}
+
+.right-side .form-holder {
+    display: none;
+    transform: translateX(-25px);
+}
+
+.right-side .sub-cont:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 200px 200px;
+    border-color: transparent transparent #007bff transparent;
+}
+
+.input-group {
+    display: block;
+    height: 47px;
+    margin-bottom: 20px;
+}
+
+input[value='Forgot?'] {
+    background: transparent;
+    color: #8495b7;
+    text-align: right;
+}
+
+input[value='Forgot?']:hover,
+input[value='Forgot?']:focus {
+    background: transparent;
+    color: #8495b7;
+}
+
+.right-side input.btn {
+    margin-top: 30px;
+}
+.slideAnim {
+    animation-name: slide;
+    animation-duration: 2s;
+}
+@keyframes slide {
+    from {  margin-left: 0px;}
+    to { margin-left: 200px;}
+
+}

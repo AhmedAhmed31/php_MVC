@@ -16,25 +16,24 @@ class AuthController extends database
 
     public function login()
     {
-
-
-        if (isset($_POST['login'])) {
+        // if already logged in redirect
+        if( isset($_SESSION['id'])) {
+          header('Location: /');
+        }
+            
+        if (isset($_POST['email']) && $_POST['password']) {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            if (database::query("SELECT * FROM login WHERE email=:email AND hash_password=:password", array(":email" => $email, ":password" => $password))) {
-                if (!isset($_SESSION['id'])) {
-                    echo 'hello';
-//                return header("Location: /login");
-
-
-                } else {
-
-
-                    echo 'fuck u bitch ';
-
-                }
+            $user = database::query("SELECT * FROM login WHERE email=:email AND hash_password=:password", array(":email" => $email, ":password" => $password));
+             if ($user) {
+                $_SESSION['id'] = $user['id'];
+                 return header('Location: /');
             }
+            // user does not exist
+            return header('Location: /register');
         }
+        
+        return header('Location: /login');
         // TODO if already logged in redirect
         // fetch from db if match $_POST add to session and redirect
         // if doesn't match redirect to register

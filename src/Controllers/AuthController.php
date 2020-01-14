@@ -62,23 +62,31 @@ class AuthController extends database
             $name = $_POST['Name'];
             if (!database::query("SELECT email FROM login WHERE email=:email", array(':email' => $email))) {
                 if (strlen($name) >= 6 && strlen($name) <= 60) {
-                    if (preg_match('/[a-zA-Z]+/', $name))
-                    {
-                        if(strlen($password)>=8 && strlen($password)<=64)
-                        {
-                            if (filter_var($email, FILTER_VALIDATE_EMAIL))
-                            {
-                            database::query("INSERT INTO login VALUES ('',:name,:hash_password,:email)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
+                    if (preg_match('/[a-zA-Z]+/', $name)) {
+                        if (strlen($password) >= 8 && strlen($password) <= 64) {
+                            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                database::query("INSERT INTO login VALUES ('',:name,:email,:hash_password)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
 
-                            echo 'created';
+                                echo 'success ';
+                            } else {
+                                echo 'this mail is invalid ';
+                            }
                         } else {
-                            echo 'this account already existed';
+                            echo 'password is invalid';
                         }
-//            return header("Location: /register");
-
+                    } else {
+                        echo 'invalid name';
                     }
+                } else {
+                    echo 'name is invalid';
+
                 }
+            } else {
+                echo 'this account already existed';
+
             }
         }
+
     }
 }
+//            return header("Location: /register");

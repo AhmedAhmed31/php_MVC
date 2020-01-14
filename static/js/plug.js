@@ -1,15 +1,15 @@
 $(function () {
 
     $('#login').click(function (e) {
-        $(".left-side .form-holder").fadeOut(1000);
+        $(".left-side .form-holder").fadeIn(1);
         $(".right-side .form-holder").fadeIn(1);
         e.preventDefault();
     });
-    $('#signup').click(function (e) {
-        $(".right-side .form-holder").fadeOut(1000);
-        $(".left-side .form-holder").fadeIn(1000);
-        e.preventDefault();
-    });
+    // $('#signup').click(function (e) {
+    //     $(".right-side .form-holder").fadeOut(1000);
+    //     $(".left-side .form-holder").fadeIn(1000);
+    //     e.preventDefault();
+    // });
 
 
 });
@@ -20,7 +20,7 @@ function myMove() {
     var pos = 0;
     var id = setInterval(frame, 10);
     function frame() {
-        if (pos == 350) {
+        if (pos == 800) {
             clearInterval(id);
         } else {
             pos++;

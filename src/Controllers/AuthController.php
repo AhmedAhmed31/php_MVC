@@ -17,15 +17,19 @@ class AuthController extends database
     public function login()
     {
 
+
         if (isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
             if (database::query("SELECT * FROM login WHERE email=:email AND hash_password=:password", array(":email" => $email, ":password" => $password))) {
-                if (!isset($_SESSION['email'])) {
+                if (!isset($_SESSION['id'])) {
                     echo 'hello';
 //                return header("Location: /login");
 
+
                 } else {
+
+
                     echo 'fuck u bitch ';
 
                 }
@@ -39,12 +43,14 @@ class AuthController extends database
 
     }
 
-    public function registerView()
+    public
+    function registerView()
     {
         return require "src/Views/retry.php";
     }
 
-    public function register()
+    public
+    function register()
     {
         // validate input types
         // check if user email already registered
@@ -55,15 +61,24 @@ class AuthController extends database
             $password = $_POST['pwd'];
             $name = $_POST['Name'];
             if (!database::query("SELECT email FROM login WHERE email=:email", array(':email' => $email))) {
+                if (strlen($name) >= 6 && strlen($name) <= 60) {
+                    if (preg_match('/[a-zA-Z]+/', $name))
+                    {
+                        if(strlen($password)>=8 && strlen($password)<=64)
+                        {
+                            if (filter_var($email, FILTER_VALIDATE_EMAIL))
+                            {
+                            database::query("INSERT INTO login VALUES ('',:name,:hash_password,:email)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
 
-                database::query("INSERT INTO login VALUES ('',:name,:hash_password,:email)", array(':name' => $name, ':email' => $email, ':hash_password' => $password));
-
-                echo 'created';
-            } else {
-                echo 'this account already existed';
-            }
+                            echo 'created';
+                        } else {
+                            echo 'this account already existed';
+                        }
 //            return header("Location: /register");
 
+                    }
+                }
+            }
         }
     }
 }

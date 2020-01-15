@@ -28,7 +28,6 @@
                         <div class="back">
                             <div class="text">
                                 <h1>thanks</h1>
-
                                 <a class="btn btn-primary" href="http://localhost:8000/" id="signout">SIGN OUT</a>
                             </div>
                         </div>

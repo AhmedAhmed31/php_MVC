@@ -9,25 +9,51 @@ class login extends database
 
     public static function logging()
     {
-
+        $err = "";
         if (isset($_POST['login'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            // $user = database::query("SELECT * FROM login WHERE email=:email AND hash_password=:password", array(":email" => $email, ":hash_password" => '$password'));
-            if (database::query("SELECT email FROM login WHERE email=:email", array(":email" => $email))) {
-                $hash = database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'];
-                if (password_verify($password, $hash)) {
-                    return header('Location: /login');
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+            $user = database::query("SELECT * FROM login WHERE email=:email", array(":email" => $email));
+            $hash = database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'];
+            if (empty($email)) {
+                $err .= "Email is empty<br>";
+            } else {
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $err .= "Email is not valid<br>";
+                }
+            }
+
+            if (empty($password)) {
+                $err .= "Password is empty<br>";
+            }
+
+            if (!empty($err)) {
+
+                // there are errors
+                echo("<p>" . $err . "</p>");
+
+            } else {
+
+                if ($user) {
+                    if (password_verify($password, $hash)) {
+                        $_SESSION['loggedin'] = TRUE;
+                        $_SESSION['name'] = $_POST['email'];
+//                        echo 'Welcome ' . $_SESSION['name'] . '!';
+                        return header('Location: /login');
+
+                    }
+                    else{
+                        unset($_SESSION['name']);
+                        return header('Location:/');
+                    }
 
                 }
-                if (isset($_POST['logout'])) {
+                else {
                     return header('Location:/');
                 }
 
-            } else {
-                return header('Location:/');
-
             }
+//        return header('Location: /login');
         }
     }
 }

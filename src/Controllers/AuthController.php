@@ -7,6 +7,7 @@ class AuthController
 
     public function loginView()
     {
+
         require_once 'src/Views/thanks.php';
     }
 

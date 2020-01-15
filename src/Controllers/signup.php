@@ -19,8 +19,9 @@ class signup extends database
                         if (strlen($password) >= 8 && strlen($password) <= 64) {
                             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 database::query("INSERT INTO login VALUES ('',:name,:email,:hash_password)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
+                                echo 'Success';
 
-                                echo 'success ';
+
                             } else {
                                 echo 'this mail is invalid ';
                             }

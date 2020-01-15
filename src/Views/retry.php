@@ -28,7 +28,7 @@
                             <div class="text">
                                 <h1>invalid email or password</h1>
 
-                                <a class="btn btn-primary" href="view.php" id="tryAgain">try again</a>
+                                <a class="btn btn-primary" href="http://localhost:8000/" id="tryAgain">try again</a>
                             </div>
                         </div>
 

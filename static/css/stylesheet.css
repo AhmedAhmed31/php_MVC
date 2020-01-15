@@ -179,7 +179,7 @@ p {
 
 .right-side .form-holder {
     display: none;
-    transform: translateX(-25px);
+    transform: translateX(-105%);
 }
 
 .right-side .sub-cont:before {

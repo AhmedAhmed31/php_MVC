@@ -7,7 +7,7 @@
                     Lorem ipsum dolor sit <br> bramet, consectetur adipisicing elit, sed do <br>eiusmod tempor
                     incididunt ut labore et <br>dolore magna aliqua.
                 </p>
-                <a class="btn btn-primary" href="" id="signup" onclick="myMove()">SIGN UP</a>
+                <a class="btn btn-primary"  id="signup"">SIGN UP</a>
             </div>
         </div>
         <div class="form-holder">

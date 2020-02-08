@@ -20,6 +20,7 @@ class HomeController
             return loadView("userPage", $user[0]);
 
         }
+        return header('Location: /');
     }
 
     public function update()
@@ -28,6 +29,12 @@ class HomeController
         User::update($id);
         header('Location:/profile');
     }
-
+public function logout(){
+        if(isset($_POST['logout'])) {
+            unset($_SESSION['id']);
+            unset($_SESSION['email']);
+            return header('Location: /');
+        }
+}
 
 }

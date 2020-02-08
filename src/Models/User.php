@@ -67,10 +67,13 @@ class User
                         return header('Location: /profile');
 
                     }
+
                 }
 
             }
         }
+
+        
     }
 
     public

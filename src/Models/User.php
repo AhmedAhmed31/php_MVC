@@ -18,26 +18,19 @@ class User
                         if (strlen($password) >= 8 && strlen($password) <= 64) {
                             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 database::query("INSERT INTO login VALUES ('',:name,:email,:hash_password)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
-                                echo 'Success';
+                                loadView('userPage');
+
                             } else {
-                                echo 'this mail is invalid ';
+                                loadView('retry');
+
                             }
-                        } else {
-                            echo 'password is invalid';
                         }
-                    } else {
-                        echo 'invalid name';
                     }
-                } else {
-                    echo 'name is invalid';
-
                 }
-            } else {
-                echo 'this account already existed';
-
             }
         }
     }
+
 
     public static function logging()
     {
@@ -62,7 +55,7 @@ class User
             if (!empty($err)) {
 
                 // there are errors
-                echo("<p>" . $err . "</p>");
+                loadView('retry');
 
             } else {
 
@@ -73,33 +66,29 @@ class User
                         $_SESSION['id'] = $user[0]["Id"];
                         return header('Location: /profile');
 
-                    } else {
-                        unset($_SESSION['name']);
-                        return header('Location:/');
                     }
-
-                } else {
-                    return header('Location:/');
                 }
 
             }
         }
     }
 
-    public static function findByemail($email)
+    public
+    static function findByemail($email)
     {
-        $user = database::query("SELECT * FROM login LEFT JOIN user_data ON login.id = user_data.user_id WHERE login.email=:email", array(":email" => $_SESSION['email']));
+        $user = database::query("SELECT * FROM login LEFT JOIN user_data ON login.id = user_data.user_id WHERE login.email=:email", array(":email" => $email));
         return $user;
     }
 
-    public static function update()
+    public
+    static function update()
     {
         $id = $_SESSION['id'];
         if (isset($_POST['update'])) {
             $age = $_POST['age'];
             $Bio = $_POST['bio'];
 //            if (database::query("SELECT * FROM user_data WHERE user_id=:id "))
-                database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age, ':bio' => $Bio, ':id' => $id));
+            database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age, ':bio' => $Bio, ':id' => $id));
 
         }
     }

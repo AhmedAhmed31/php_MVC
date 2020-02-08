@@ -30,15 +30,12 @@ class HomeController
 
     public function update()
     {
-
         $id=$_SESSION['id'];
-        var_dump($id);
-
-        if (isset($_POST['Submit'])) {
-            $Age = $_POST['age'];
-            $bio = $_POST['bio'];
+        if (isset($_POST['update'])) {
+            $age = $_POST['age'];
+            $Bio = $_POST['bio'];
             try {
-                database::query("UPDATE  user_data SET :Age=$Age,:bio=$bio,user_id= WHERE :user_id=$id", array(':Age' => $Age, ':bio' => $bio,':user_id'=>$_SESSION['id']));
+                database::query('UPDATE  user_data SET Age=:age,bio=:Bio WHERE `user_id`=:id', array(':Age' => $age, ':bio' => $Bio,':user_id'=>$id));
 
             }
             catch (Exception $e){

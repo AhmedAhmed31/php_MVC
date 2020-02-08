@@ -86,10 +86,9 @@ class User
         }
     }
 
-    public static function findByemail()
+    public static function findByemail($email)
     {
         $user = database::query("SELECT * FROM login LEFT JOIN user_data ON login.id = user_data.user_id WHERE login.email=:email", array(":email" => $_SESSION['email']));
-
         return $user;
     }
 
@@ -99,7 +98,7 @@ class User
         if (isset($_POST['update'])) {
             $age = $_POST['age'];
             $Bio = $_POST['bio'];
-            if (database::query("SELECT * FROM user_data WHERE user_id=:id "))
+//            if (database::query("SELECT * FROM user_data WHERE user_id=:id "))
                 database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age, ':bio' => $Bio, ':id' => $id));
 
         }

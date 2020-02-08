@@ -15,7 +15,8 @@ class HomeController
     {
 
         if (isset($_SESSION['email'])) {
-            $user = User::findbyemail();
+            $email = $_SESSION['email'];
+            $user = User::findbyemail($email);
             return loadView("userPage", $user[0]);
 
         }

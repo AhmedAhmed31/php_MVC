@@ -34,13 +34,10 @@ class HomeController
         if (isset($_POST['update'])) {
             $age = $_POST['age'];
             $Bio = $_POST['bio'];
-            try {
-                database::query('UPDATE  user_data SET Age=:age,bio=:Bio WHERE `user_id`=:id', array(':Age' => $age, ':bio' => $Bio,':user_id'=>$id));
+                database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age,':bio' => $Bio,':id'=>$id));
+
 
             }
-            catch (Exception $e){
-                var_dump($e);
-            }
         }
-    }
+
 }

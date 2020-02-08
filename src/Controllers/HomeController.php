@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Utils\database;
+use mysql_xdevapi\Exception;
 
 class HomeController
 {
@@ -24,6 +25,25 @@ class HomeController
 
             return loadView("userPage",$user[0]);
 
+        }
+    }
+
+    public function update()
+    {
+
+        $id=$_SESSION['id'];
+        var_dump($id);
+
+        if (isset($_POST['Submit'])) {
+            $Age = $_POST['age'];
+            $bio = $_POST['bio'];
+            try {
+                database::query("UPDATE  user_data SET :Age=$Age,:bio=$bio,user_id= WHERE :user_id=$id", array(':Age' => $Age, ':bio' => $bio,':user_id'=>$_SESSION['id']));
+
+            }
+            catch (Exception $e){
+                var_dump($e);
+            }
         }
     }
 }

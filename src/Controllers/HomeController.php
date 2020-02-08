@@ -25,6 +25,7 @@ class HomeController
     public function update()
     {
       $id= $_SESSION['id'];
+
         User::update($id);
     }
 

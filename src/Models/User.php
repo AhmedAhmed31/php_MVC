@@ -83,6 +83,7 @@ class User
 
     public static function update($id)
     {
+
             if (isset($_POST['update'])) {
             $age = $_POST['age'];
             $Bio = $_POST['bio'];
@@ -92,7 +93,7 @@ class User
             }
 
             else{
-                database::query("INSERT INTO user_data VALUES ('',:age,:bio,'')", array(':age' => $age, ':bio' => $Bio));
+                database::query("INSERT INTO user_data  VALUES ('',:bio,:user_id,:age)   ", array(':age' => $age, ':bio' => $Bio,':user_id'=>$id));
 
             }
         }

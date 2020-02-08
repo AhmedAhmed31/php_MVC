@@ -80,16 +80,21 @@ class User
         return $user;
     }
 
-    public
-    static function update()
+
+    public static function update($id)
     {
-        $id = $_SESSION['id'];
-        if (isset($_POST['update'])) {
+            if (isset($_POST['update'])) {
             $age = $_POST['age'];
             $Bio = $_POST['bio'];
-//            if (database::query("SELECT * FROM user_data WHERE user_id=:id "))
-            database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age, ':bio' => $Bio, ':id' => $id));
+            if (database::query("SELECT * FROM user_data WHERE user_id=:id ", array(':id' => $id))) {
+                database::query('UPDATE  user_data SET age=:age,bio=:bio WHERE user_id=:id', array(':age' => $age, ':bio' => $Bio, ':id' => $id));
 
+            }
+
+            else{
+                database::query("INSERT INTO user_data VALUES ('',:age,:bio,'')", array(':age' => $age, ':bio' => $Bio));
+
+            }
         }
     }
 

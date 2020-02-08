@@ -2,35 +2,31 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class AuthController
 {
 
     public function loginView()
     {
-
-        require_once 'src/Views/thanks.php';
+        loadView("thanks");
     }
 
     public function login()
     {
 
-        login::logging();
+        User::logging();
 
     }
 
     public function registerView()
     {
-        return require "src/Views/retry.php";
+        loadView("retry");
     }
 
 
     public function register()
     {
-        // validate input types
-        // check if user email already registered
-        // create user and redirect to home
-
-        signup::Signup();
-
+        User::Signup();
     }
 }

@@ -3,7 +3,7 @@
         <div class="text">
             <h2>Have an account?</h2>
             <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit.</p>
-            <a class="btn btn-primary btn-lg"  id="login"">LOGIN</a>
+            <a class="btn btn-primary btn-lg" id="login"">LOGIN</a>
         </div>
         <div class="form-holder">
             <div class="holder">

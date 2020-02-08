@@ -11,6 +11,13 @@ class database
     public static $username = 'root';
     public static $password = '';
 
+    public static function query($query, $params = array())
+    {
+        $stmt = self::connect()->prepare($query);
+        $stmt->execute($params);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
 
     private static function connect()
     {
@@ -21,14 +28,6 @@ class database
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
-    public static function query($query, $params = array())
-    {
-        $stmt = self::connect()->prepare($query);
-        $stmt->execute($params);
-        $data = $stmt->fetchAll();
-        return $data;
-    }
-
 
 
 }

@@ -37,9 +37,10 @@ class login extends database
                 if ($user) {
                     if (password_verify($password, $hash)) {
                         $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['name'] = $_POST['email'];
-//                        echo 'Welcome ' . $_SESSION['name'] . '!';
-                        return header('Location: /login');
+                        $_SESSION['email'] = $_POST['email'];
+                        $_SESSION['id'] = $user[0]["id"];
+
+                        return header('Location: /profile');
 
                     }
                     else{

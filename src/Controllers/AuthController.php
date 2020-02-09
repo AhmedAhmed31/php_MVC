@@ -9,7 +9,7 @@ class AuthController
 
     public function loginView()
     {
-        loadView("thanks");
+        loadView("retry");
     }
 
     public function login()
@@ -21,12 +21,14 @@ class AuthController
 
     public function registerView()
     {
-        loadView("retry");
+        loadView("thanks");
     }
 
 
     public function register()
     {
         User::Signup();
+        return header('Location: /register');
+
     }
 }

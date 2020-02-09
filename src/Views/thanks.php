@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- First Mobile META -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Retry</title>
+    <title>your account has been registered successfully </title>
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">

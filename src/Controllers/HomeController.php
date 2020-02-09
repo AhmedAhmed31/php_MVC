@@ -27,7 +27,7 @@ class HomeController
     {
         $id = $_SESSION['id'];
         User::update($id);
-        header('Location:/profile');
+        return header('Location:/profile');
     }
 public function logout(){
         if(isset($_POST['logout'])) {

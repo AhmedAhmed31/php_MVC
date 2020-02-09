@@ -8,6 +8,7 @@ class User
 {
     public static function Signup()
     {
+
         if (isset($_POST['Submit'])) {
             $email = $_POST['Email'];
             $password = $_POST['pwd'];
@@ -18,7 +19,6 @@ class User
                         if (strlen($password) >= 8 && strlen($password) <= 64) {
                             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 database::query("INSERT INTO login VALUES ('',:name,:email,:hash_password)", array(':name' => $name, ':email' => $email, ':hash_password' => password_hash($password, PASSWORD_BCRYPT)));
-                                loadView('userPage');
 
                             } else {
                                 loadView('retry');
@@ -27,8 +27,11 @@ class User
                         }
                     }
                 }
+            } else {
+                echo 'your email used';
             }
         }
+
     }
 
 
@@ -54,7 +57,6 @@ class User
 
             if (!empty($err)) {
 
-                // there are errors
                 loadView('retry');
 
             } else {
@@ -72,12 +74,12 @@ class User
 
             }
         }
+        return header('Location: /login');
 
-        
     }
 
-    public
-    static function findByemail($email)
+
+    public static function findByemail($email)
     {
         $user = database::query("SELECT * FROM login LEFT JOIN user_data ON login.id = user_data.user_id WHERE login.email=:email", array(":email" => $email));
         return $user;

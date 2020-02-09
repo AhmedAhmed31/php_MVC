@@ -17,6 +17,7 @@ class AuthController
 
         User::logging();
 
+
     }
 
     public function registerView()
@@ -28,7 +29,6 @@ class AuthController
     public function register()
     {
         User::Signup();
-        return header('Location: /register');
 
     }
 }

@@ -28,9 +28,11 @@ class User
                     }
                 }
             } else {
-                echo 'your email used';
+                loadView('retry');
             }
         }
+        return header('Location: /register');
+
 
     }
 
@@ -74,7 +76,6 @@ class User
 
             }
         }
-        return header('Location: /login');
 
     }
 

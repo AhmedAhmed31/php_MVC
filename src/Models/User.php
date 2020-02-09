@@ -14,7 +14,7 @@ class User
             $password = $_POST['pwd'];
             $name = $_POST['Name'];
             if (!database::query("SELECT email FROM login WHERE email=:email", array(':email' => $email))) {
-                if (strlen($name) >= 6 && strlen($name) <= 60) {
+                if (strlen($name) >= 3 && strlen($name) <= 60) {
                     if (preg_match('/[a-zA-Z]+/', $name)) {
                         if (strlen($password) >= 8 && strlen($password) <= 64) {
                             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -59,7 +59,6 @@ class User
 
             if (!empty($err)) {
 
-                loadView('retry');
 
             } else {
 
@@ -70,6 +69,9 @@ class User
                         $_SESSION['id'] = $user[0]["Id"];
                         return header('Location: /profile');
 
+                    }
+                    else{
+                        return header('Location: /login');
                     }
 
                 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- First Mobile META -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Retry</title>
+    <title>Invalid password or Email</title>
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/logo.png"/>
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">

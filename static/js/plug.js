@@ -14,27 +14,34 @@ $(function () {
 
 
 });
-$(document).ready(function() {
+$(document).ready(function () {
     $('#LOGIN').submit(function (e) {
         e.preventDefault();
         var username = $('#email').val();
         var password = $('#password').val();
-
         if ($.trim(username).length > 0 && $.trim(password).length > 0) {
             fetch("/login", {
                 headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 method: "POST",
                 body: JSON.stringify({username: username, password: password})
             })
-            .then(res => res.json() )
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == 'failed') {
+                        $('#error').html("<span class='text-danger'>Invalid Email or Password</span>");
+                        return;
+
+                    } else {
+                        window.location.replace('/profile');
+
+                    }
+                })
+                .catch(err => console.log(err))
 
         } else {
-
             $('#error').html("<span class='text-danger'>Please fill all fields</span>");
         }
     });

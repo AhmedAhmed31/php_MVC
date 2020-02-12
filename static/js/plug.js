@@ -23,15 +23,15 @@ $(document).ready(function() {
         if ($.trim(username).length > 0 && $.trim(password).length > 0) {
             fetch("/login", {
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
                 },
                 method: "POST",
                 body: JSON.stringify({username: username, password: password})
             })
-                .then(res => res.json() )
-                .then(data => console.log(data))
-                .catch(err => console.log(err))
+            .then(res => res.json() )
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
 
         } else {
 

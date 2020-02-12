@@ -221,3 +221,8 @@ input[value='Forgot?']:focus {
     to { margin-left: 200px;}
 
 }
+#error span{
+    top: -37px;
+    left: -23%;
+
+}

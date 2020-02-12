@@ -6,10 +6,10 @@ use PDO;
 
 class database
 {
-    public static $host = '127.0.0.1';
-    public static $dbname = 'magebit';
-    public static $username = 'root';
-    public static $password = '';
+    private static $host = '127.0.0.1';
+    private static $dbname = 'magebit';
+    private static $username = 'root';
+    private static $password = '';
 
     public static function query($query, $params = array())
     {

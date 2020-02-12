@@ -39,47 +39,26 @@ class User
 
     public static function logging()
     {
-        $err = "";
         if (isset($_POST['login'])) {
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
             $user = database::query("SELECT * FROM login WHERE email=:email", array(":email" => $email));
-            $hash = database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'];
-            if (empty($email)) {
-                $err .= "Email is empty<br>";
-            } else {
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $err .= "Email is not valid<br>";
-                }
-            }
-
-            if (empty($password)) {
-                $err .= "Password is empty<br>";
-            }
-
-            if (!empty($err)) {
-
-
-            } else {
-
                 if ($user) {
-                    if (password_verify($password, $hash)) {
+                    if (password_verify($password, database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'])) {
                         $_SESSION['loggedin'] = TRUE;
                         $_SESSION['email'] = $_POST['email'];
                         $_SESSION['id'] = $user[0]["Id"];
                         return header('Location: /profile');
 
                     }
-                    else{
-                        return header('Location: /login');
-                    }
-
                 }
 
             }
+
+
         }
 
-    }
+
 
 
     public static function findByemail($email)

@@ -15,12 +15,14 @@ $(function () {
 
 });
 $(document).ready(function() {
-    $('#LOGIN').click(function () {
+    $('#LOGIN').submit(function (e) {
+        e.preventDefault();
         var username = $('#email').val();
         var password = $('#password').val();
+
         if ($.trim(username).length > 0 && $.trim(password).length > 0) {
             $.ajax({
-                url: "userPage.php?action=login",
+                url: "/login",
                 method: "POST",
                 data: {username: username, password: password},
                 cache: false,
@@ -28,15 +30,17 @@ $(document).ready(function() {
                     $('#LOGIN').val("connecting...");
                 },
                 success: function (data) {
-                    if (data) {
+                    console.log('hello world');
+                    // window.location.replace('/profile');
+                },
+                fail: function (data) {
+                    $('#error').html("<span class='text-danger'>failed login</span>");
 
-                    } else {
-                        $('#error').html("<span class='text-danger'>Invalid username or Password</span>");
-                    }
                 }
             });
 
         } else {
+
             $('#error').html("<span class='text-danger'>Please fill all fields</span>");
         }
     });

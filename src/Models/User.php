@@ -39,26 +39,25 @@ class User
 
     public static function logging()
     {
-        if (isset($_POST['login'])) {
+        if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
             $user = database::query("SELECT * FROM login WHERE email=:email", array(":email" => $email));
-                if ($user) {
-                    if (password_verify($password, database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'])) {
-                        $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['email'] = $_POST['email'];
-                        $_SESSION['id'] = $user[0]["Id"];
-                        return header('Location: /profile');
+            if ($user) {
+                if (password_verify($password, database::query("SELECT hash_password FROM login WHERE email=:email", array(":email" => $email))[0]['hash_password'])) {
+                    $_SESSION['loggedin'] = TRUE;
+                    $_SESSION['email'] = $_POST['email'];
+                    $_SESSION['id'] = $user[0]["Id"];
+                    $response = array("message"=>"you are logged in");
+                    return  json_encode($response);
 
-                    }
                 }
+                header("HTTP/1.1 401 Unauthorized");
+                exit;
 
             }
-
-
         }
-
-
+    }
 
 
     public static function findByemail($email)

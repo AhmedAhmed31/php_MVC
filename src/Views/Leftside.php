@@ -14,5 +14,4 @@
             <div class="holder">
                 <div class="tittle">
                     <h2>Sign Up</h2>
-                    <img src="/static/img/logo.png" alt="" class="pull-right">
                 </div>

@@ -9,5 +9,4 @@
             <div class="holder">
                 <div class="tittle">
                     <h2>Login</h2>
-                    <img src="/static/img/logo.png" alt="" class="pull-right">
                 </div>

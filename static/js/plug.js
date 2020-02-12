@@ -21,23 +21,17 @@ $(document).ready(function() {
         var password = $('#password').val();
 
         if ($.trim(username).length > 0 && $.trim(password).length > 0) {
-            $.ajax({
-                url: "/login",
+            fetch("/login", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 method: "POST",
-                data: {username: username, password: password},
-                cache: false,
-                beforeSend: function () {
-                    $('#LOGIN').val("connecting...");
-                },
-                success: function (data) {
-                    console.log('hello world');
-                    // window.location.replace('/profile');
-                },
-                fail: function (data) {
-                    $('#error').html("<span class='text-danger'>failed login</span>");
-
-                }
-            });
+                body: JSON.stringify({username: username, password: password})
+            })
+                .then(res => res.json() )
+                .then(data => console.log(data))
+                .catch(err => console.log(err))
 
         } else {
 

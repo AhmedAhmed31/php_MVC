@@ -49,6 +49,7 @@ class User
                     $_SESSION['email'] = $_POST['email'];
                     $_SESSION['id'] = $user[0]["Id"];
                     $response = array("message"=>"you are logged in");
+                    header('location: /profile');
                     return  json_encode($response);
 
                 }
@@ -57,6 +58,7 @@ class User
 
             }
         }
+
     }
 
 

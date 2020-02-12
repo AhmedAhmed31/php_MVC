@@ -14,7 +14,7 @@ require 'Rightside.php';
         <i class="pull-right fa fa-lock" aria-hidden="true"></i>
     </div>
     <div class="input-group">
-        <input type="submit"  name="login" value="LOGIN" class="btn btn-lg pull-left">
+        <input type="submit"  id="send" name="login" value="LOGIN" class="btn btn-lg pull-left">
     </div>
         <div id="error"></div>
 </form>
